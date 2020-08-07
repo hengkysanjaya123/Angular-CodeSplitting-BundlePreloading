@@ -1,4 +1,33 @@
-# CodeSplittingBundlePreloading
+# Code Splitting and BundlePreloading
+
+## Tools for fast Angular applications
+### Code Splitting
+Lazy loading module (on-demand loading)
+
+    ```jsx
+    ng g module <module name> --route <lazy route path> --module <parent module name>
+    ng g m about --route about --module app
+
+    ```
+This lazy load method will lead to high latency when navigating across pages.
+ 
+#### How to solve?
+We can use 'Bundle Preloading' to pre-load the module. (More detail in next point)
+ 
+### Bundle Preloading
+ngx-quicklink:
+ - Detects when the router links is visible in the viewport
+ - Wait until the browser is idle
+ - Prefetches the lazy modules
+
+```jsx
+npm i ngx-quicklink --save
+```
+### Efficient Serving (not implemented in this project)
+```jsx
+ng add @angular/fire // install firebase tool
+```
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.10.
 
