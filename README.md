@@ -4,11 +4,21 @@
 ### Code Splitting
 Lazy loading module (on-demand loading)
 
-    ```jsx
+#### How to generate lazy load module:
+    ```
     ng g module <module name> --route <lazy route path> --module <parent module name>
     ng g m about --route about --module app
 
     ```
+
+#### Example usage:
+   ``` 
+  const routes: Routes = [
+    {path: 'home', component: HomeComponent},
+    {path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule)},
+    {path: 'content', component: ContentComponent},
+  ];
+   ```
 This lazy load method will lead to high latency when navigating across pages.
  
 #### How to solve?
@@ -20,11 +30,47 @@ ngx-quicklink:
  - Wait until the browser is idle
  - Prefetches the lazy modules
 
-```jsx
+#### How to install:
+```
 npm i ngx-quicklink --save
 ```
+
+#### Example usage:
+app.module.ts
+``` 
+import { QuicklinkModule } from 'ngx-quicklink
+
+@NgModule({
+  ...
+  imports: [
+    QuicklinkModule,
+    ...
+  ],
+  ...
+})
+export class AppModule {
+}
+```
+
+app-routing.module.ts
+``` 
+
+import { QuicklinkStrategy } from 'ngx-quicklink';
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: QuicklinkStrategy})],
+  ...
+})
+export class AppRoutingModule {
+  ...
+}
+
+```
+
 ### Efficient Serving (not implemented in this project)
-```jsx
+
+#### How to install:
+```
 ng add @angular/fire // install firebase tool
 ```
 
