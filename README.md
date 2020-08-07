@@ -54,8 +54,10 @@ export class AppModule {
 
 app-routing.module.ts
 ``` 
-
+...
 import { QuicklinkStrategy } from 'ngx-quicklink';
+
+...
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {preloadingStrategy: QuicklinkStrategy})],
@@ -73,6 +75,9 @@ export class AppRoutingModule {
 ```
 ng add @angular/fire // install firebase tool
 ```
+
+##
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.10.
